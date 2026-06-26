@@ -139,7 +139,7 @@ export default function CategoryPage() {
                   </p>
                 )}
                 <p className="text-purple-200">
-                  {category._count.posts} publicación{category._count.posts !== 1 ? 'es' : ''}
+                  {category._count.blog_posts} publicación{category._count.blog_posts !== 1 ? 'es' : ''}
                 </p>
               </div>
             </div>

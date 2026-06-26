@@ -83,12 +83,12 @@ export async function GET(request: NextRequest) {
           name: true,
           _count: {
             select: {
-              posts: true
+              blog_posts: true
             }
           }
         },
         orderBy: {
-          posts: {
+          blog_posts: {
             _count: 'desc'
           }
         },

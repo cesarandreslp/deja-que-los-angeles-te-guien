@@ -527,7 +527,7 @@ export default function BlogAdminPage() {
                     </div>
                     <p className="text-sm text-gray-600 mb-2">{category.description}</p>
                     <p className="text-xs text-gray-500">
-                      {category._count.posts} publicación(es)
+                      {category._count.blog_posts} publicación(es)
                     </p>
                   </div>
                 ))}

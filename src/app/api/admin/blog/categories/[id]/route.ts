@@ -13,7 +13,7 @@ interface RouteParams {
 export async function GET(request: NextRequest, { params }: RouteParams) {
   try {
     const session = await getServerSession(authOptions)
-    
+
     if (!session || (session.user.role !== 'ADMIN' && session.user.role !== 'CONSULTANT')) {
       return NextResponse.json(
         { error: 'No autorizado' },
@@ -24,7 +24,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     const category = await prisma.blog_categories.findUnique({
       where: { id: params.id },
       include: {
-        posts: {
+        blog_posts: {
           include: {
             author: {
               select: {
@@ -44,7 +44,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         },
         _count: {
           select: {
-            posts: true
+            blog_posts: true
           }
         }
       }
@@ -72,7 +72,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 export async function PUT(request: NextRequest, { params }: RouteParams) {
   try {
     const session = await getServerSession(authOptions)
-    
+
     if (!session || (session.user.role !== 'ADMIN' && session.user.role !== 'CONSULTANT')) {
       return NextResponse.json(
         { error: 'No autorizado' },
@@ -120,7 +120,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
       include: {
         _count: {
           select: {
-            posts: true
+            blog_posts: true
           }
         }
       }
@@ -141,7 +141,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
 export async function DELETE(request: NextRequest, { params }: RouteParams) {
   try {
     const session = await getServerSession(authOptions)
-    
+
     if (!session || session.user.role !== 'ADMIN') {
       return NextResponse.json(
         { error: 'No autorizado' },
@@ -155,7 +155,7 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
       include: {
         _count: {
           select: {
-            posts: true
+            blog_posts: true
           }
         }
       }
@@ -169,7 +169,7 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
     }
 
     // No permitir eliminar categorías con publicaciones
-    if (existingCategory._count.posts > 0) {
+    if (existingCategory._count.blog_posts > 0) {
       return NextResponse.json(
         { error: 'No se puede eliminar una categoría que tiene publicaciones' },
         { status: 400 }

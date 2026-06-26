@@ -7,7 +7,7 @@ interface CategoryWithCount {
   slug: string
   description: string | null
   _count: {
-    posts: number
+    blog_posts: number
   }
 }
 
@@ -18,11 +18,7 @@ export async function GET(request: NextRequest) {
       include: {
         _count: {
           select: {
-            posts: {
-              where: {
-                status: 'PUBLISHED' // Solo contar posts publicados
-              }
-            }
+            blog_posts: true
           }
         }
       },
@@ -32,7 +28,7 @@ export async function GET(request: NextRequest) {
     })
 
     // Filtrar categorías que tengan al menos un post publicado
-    const categoriesWithPosts = categories.filter((cat: CategoryWithCount) => cat._count.posts > 0)
+    const categoriesWithPosts = categories.filter((cat: CategoryWithCount) => cat._count.blog_posts > 0)
 
     return NextResponse.json({ categories: categoriesWithPosts })
 

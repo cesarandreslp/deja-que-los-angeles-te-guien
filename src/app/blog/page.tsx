@@ -287,7 +287,7 @@ export default function BlogPage() {
                         color: currentTheme.colors.textSecondary
                       }}
                     >
-                      {category._count.posts}
+                      {category._count.blog_posts}
                     </span>
                   </button>
                 ))}
