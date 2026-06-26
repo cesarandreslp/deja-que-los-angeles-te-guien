@@ -30,15 +30,15 @@ interface BlogPost {
   views: number
   likes: number
   tags: string[]
-  category: {
+  blog_categories: {
     name: string
     slug: string
   }
-  author: {
+  User: {
     fullName: string
   }
   _count: {
-    comments: number
+    blog_comments: number
   }
 }
 
@@ -392,7 +392,7 @@ export default function BlogPage() {
                               fontFamily: currentTheme.typography.bodyFont
                             }}
                           >
-                            {post.category.name}
+                            {post.blog_categories.name}
                           </span>
                           <span 
                             className="text-xs"
@@ -439,7 +439,7 @@ export default function BlogPage() {
                         >
                           <div className="flex items-center gap-2">
                             <UserIcon className="w-4 h-4" />
-                            <span>{post.author.fullName}</span>
+                            <span>{post.User.fullName}</span>
                           </div>
                           <div className="flex items-center gap-4">
                             <div className="flex items-center gap-1">
@@ -452,7 +452,7 @@ export default function BlogPage() {
                             </div>
                             <div className="flex items-center gap-1">
                               <MessageCircleIcon className="w-4 h-4" />
-                              <span>{post._count.comments}</span>
+                              <span>{post._count.blog_comments}</span>
                             </div>
                           </div>
                         </div>

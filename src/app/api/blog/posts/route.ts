@@ -34,13 +34,13 @@ export async function GET(request: NextRequest) {
       prisma.blog_posts.findMany({
         where,
         include: {
-          author: {
+          User: {
             select: {
               id: true,
               fullName: true
             }
           },
-          category: {
+          blog_categories: {
             select: {
               id: true,
               name: true,
@@ -49,7 +49,7 @@ export async function GET(request: NextRequest) {
           },
           _count: {
             select: {
-              comments: {
+              blog_comments: {
                 where: {
                   isApproved: true
                 }

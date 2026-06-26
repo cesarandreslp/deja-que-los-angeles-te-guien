@@ -33,15 +33,15 @@ interface BlogPost {
   likes: number
   publishedAt?: string
   createdAt: string
-  category: {
+  blog_categories: {
     name: string
     slug: string
   }
-  author: {
+  User: {
     fullName: string
   }
   _count: {
-    comments: number
+    blog_comments: number
   }
 }
 
@@ -60,11 +60,11 @@ interface BlogComment {
   content: string
   isApproved: boolean
   createdAt: string
-  user: {
+  User: {
     fullName: string
     email: string
   }
-  post: {
+  blog_posts: {
     title: string
     slug: string
   }
@@ -423,11 +423,11 @@ export default function BlogAdminPage() {
                       </div>
                       <p className="text-sm text-gray-600 mb-2">{post.excerpt}</p>
                       <div className="flex items-center gap-4 text-xs text-gray-500">
-                        <span>📁 {post.category.name}</span>
-                        <span>👤 {post.author.fullName}</span>
+                        <span>📁 {post.blog_categories.name}</span>
+                        <span>👤 {post.User.fullName}</span>
                         <span>👁 {post.views} vistas</span>
                         <span>❤️ {post.likes} likes</span>
-                        <span>💬 {post._count.comments} comentarios</span>
+                        <span>💬 {post._count.blog_comments} comentarios</span>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
@@ -578,10 +578,10 @@ export default function BlogAdminPage() {
                   <div key={comment.id} className="p-4 border rounded-lg">
                     <div className="flex items-start justify-between mb-2">
                       <div>
-                        <p className="font-medium">{comment.user.fullName}</p>
-                        <p className="text-sm text-gray-600">{comment.user.email}</p>
+                        <p className="font-medium">{comment.User.fullName}</p>
+                        <p className="text-sm text-gray-600">{comment.User.email}</p>
                         <p className="text-xs text-gray-500">
-                          en "{comment.post.title}" • {new Date(comment.createdAt).toLocaleDateString()}
+                          en "{comment.blog_posts.title}" • {new Date(comment.createdAt).toLocaleDateString()}
                         </p>
                       </div>
                       <Badge variant={comment.isApproved ? 'default' : 'secondary'}>
@@ -608,7 +608,7 @@ export default function BlogAdminPage() {
                         </Button>
                       )}
                       <Button size="sm" variant="outline" asChild>
-                        <Link href={`/blog/${comment.post.slug}#comment-${comment.id}`} target="_blank">
+                        <Link href={`/blog/${comment.blog_posts.slug}#comment-${comment.id}`} target="_blank">
                           Ver en Post
                         </Link>
                       </Button>

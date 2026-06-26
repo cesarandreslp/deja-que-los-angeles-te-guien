@@ -27,11 +27,11 @@ interface BlogPost {
   views: number
   likes: number
   tags: string[]
-  author: {
+  User: {
     fullName: string
   }
   _count: {
-    comments: number
+    blog_comments: number
   }
 }
 
@@ -40,7 +40,7 @@ interface BlogCategory {
   name: string
   slug: string
   description?: string
-  posts: BlogPost[]
+  blog_posts: BlogPost[]
   _count: {
     blog_posts: number
   }
@@ -141,6 +141,7 @@ export default function CategoryPage() {
                 <p className="text-purple-200">
                   {category._count.blog_posts} publicación{category._count.blog_posts !== 1 ? 'es' : ''}
                 </p>
+
               </div>
             </div>
           </div>
@@ -149,9 +150,9 @@ export default function CategoryPage() {
 
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-6xl mx-auto">
-          {category.posts && category.posts.length > 0 ? (
+          {category.blog_posts && category.blog_posts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {category.posts.map((post) => (
+              {category.blog_posts.map((post) => (
                 <Card key={post.id} className="hover:shadow-lg transition-shadow duration-300">
                   {post.coverImage && (
                     <div className="relative h-48 w-full">
@@ -182,7 +183,7 @@ export default function CategoryPage() {
                     <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
                       <div className="flex items-center gap-2">
                         <UserIcon className="w-4 h-4" />
-                        <span>{post.author.fullName}</span>
+                        <span>{post.User.fullName}</span>
                       </div>
                       <div className="flex items-center gap-4">
                         <div className="flex items-center gap-1">
@@ -195,7 +196,7 @@ export default function CategoryPage() {
                         </div>
                         <div className="flex items-center gap-1">
                           <MessageCircleIcon className="w-4 h-4" />
-                          <span>{post._count.comments}</span>
+                          <span>{post._count.blog_comments}</span>
                         </div>
                       </div>
                     </div>

@@ -18,25 +18,25 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         status: 'PUBLISHED' // Solo posts publicados
       },
       include: {
-        author: {
+        User: {
           select: {
             id: true,
             fullName: true
           }
         },
-        category: {
+        blog_categories: {
           select: {
             id: true,
             name: true,
             slug: true
           }
         },
-        comments: {
+        blog_comments: {
           where: {
             isApproved: true // Solo comentarios aprobados
           },
           include: {
-            user: {
+            User: {
               select: {
                 id: true,
                 fullName: true

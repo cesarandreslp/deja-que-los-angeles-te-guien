@@ -17,8 +17,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       status: 'PUBLISHED'
     },
     include: {
-      author: { select: { fullName: true, email: true } },
-      category: { select: { name: true } },
+      User: { select: { fullName: true, email: true } },
+      blog_categories: { select: { name: true } },
     },
   })
 
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${post.title} | Blog Angelical`,
     description: post.excerpt,
     keywords: post.tags,
-    authors: [{ name: post.author.fullName }],
+    authors: [{ name: post.User.fullName }],
     
     // Open Graph (Facebook, LinkedIn, etc.)
     openGraph: {
@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ],
       publishedTime: post.publishedAt?.toISOString(),
       modifiedTime: post.updatedAt.toISOString(),
-      authors: [post.author.fullName],
+      authors: [post.User.fullName],
       tags: post.tags,
       locale: 'es_ES',
     },
@@ -110,24 +110,24 @@ export default async function BlogPostPage({ params }: Props) {
       status: 'PUBLISHED'
     },
     include: {
-      author: { 
-        select: { 
+      User: {
+        select: {
           id: true,
           fullName: true,
           email: true,
-        } 
+        }
       },
-      category: { 
-        select: { 
+      blog_categories: {
+        select: {
           id: true,
-          name: true, 
-          slug: true 
-        } 
+          name: true,
+          slug: true
+        }
       },
-      comments: {
+      blog_comments: {
         where: { isApproved: true },
         include: {
-          user: {
+          User: {
             select: {
               fullName: true,
             }
@@ -159,8 +159,8 @@ export default async function BlogPostPage({ params }: Props) {
     dateModified: post.updatedAt.toISOString(),
     author: {
       '@type': 'Person',
-      name: post.author.fullName,
-      url: `${siteUrl}/consultores/${post.author.id}`
+      name: post.User.fullName,
+      url: `${siteUrl}/consultores/${post.User.id}`
     },
     publisher: {
       '@type': 'Organization',
@@ -176,7 +176,7 @@ export default async function BlogPostPage({ params }: Props) {
       '@id': `${siteUrl}/blog/${post.slug}`
     },
     keywords: post.tags.join(', '),
-    articleSection: post.category.name,
+    articleSection: post.blog_categories.name,
     wordCount: words,
     inLanguage: 'es-ES',
     interactionStatistic: [
@@ -188,7 +188,7 @@ export default async function BlogPostPage({ params }: Props) {
       {
         '@type': 'InteractionCounter',
         interactionType: 'https://schema.org/CommentAction',
-        userInteractionCount: post.comments.length
+        userInteractionCount: post.blog_comments.length
       }
     ]
   }
@@ -213,8 +213,8 @@ export default async function BlogPostPage({ params }: Props) {
       {
         '@type': 'ListItem',
         position: 3,
-        name: post.category.name,
-        item: `${siteUrl}/blog/categoria/${post.category.slug}`
+        name: post.blog_categories.name,
+        item: `${siteUrl}/blog/categoria/${post.blog_categories.slug}`
       },
       {
         '@type': 'ListItem',
@@ -238,16 +238,39 @@ export default async function BlogPostPage({ params }: Props) {
       />
       
       {/* Componente cliente con la UI interactiva */}
-      <BlogPostClient 
+      <BlogPostClient
         post={{
-          ...post,
+          id: post.id,
+          title: post.title,
+          slug: post.slug,
+          content: post.content,
+          excerpt: post.excerpt,
+          coverImage: post.coverImage,
+          tags: post.tags,
+          views: post.views,
+          likes: post.likes,
           publishedAt: post.publishedAt?.toISOString() || '',
           createdAt: post.createdAt.toISOString(),
           updatedAt: post.updatedAt.toISOString(),
-          comments: post.comments.map(comment => ({
-            ...comment,
+          author: {
+            id: post.User.id,
+            fullName: post.User.fullName,
+            email: post.User.email,
+          },
+          category: {
+            id: post.blog_categories.id,
+            name: post.blog_categories.name,
+            slug: post.blog_categories.slug,
+          },
+          comments: post.blog_comments.map(comment => ({
+            id: comment.id,
+            content: comment.content,
             createdAt: comment.createdAt.toISOString(),
             updatedAt: comment.updatedAt.toISOString(),
+            isApproved: comment.isApproved,
+            user: {
+              fullName: comment.User.fullName,
+            },
           }))
         }}
         readingTime={readingTime}

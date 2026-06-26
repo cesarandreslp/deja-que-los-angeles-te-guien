@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+﻿import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
@@ -46,8 +46,8 @@ export async function GET(request: NextRequest) {
       }).then((result: any) => result._sum.likes || 0),
       
       // Comentarios
-      prisma.blogComment.count(),
-      prisma.blogComment.count({ where: { isApproved: false } }),
+      prisma.blog_comments.count(),
+      prisma.blog_comments.count({ where: { isApproved: false } }),
       
       // Categorías
       prisma.blog_categories.count(),

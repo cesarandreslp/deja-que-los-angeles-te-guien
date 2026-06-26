@@ -13,12 +13,12 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     const category = await prisma.blog_categories.findUnique({
       where: { slug: params.slug },
       include: {
-        posts: {
+        blog_posts: {
           where: {
             status: 'PUBLISHED' // Solo posts publicados
           },
           include: {
-            author: {
+            User: {
               select: {
                 id: true,
                 fullName: true
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
             },
             _count: {
               select: {
-                comments: {
+                blog_comments: {
                   where: {
                     isApproved: true
                   }
@@ -40,7 +40,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         },
         _count: {
           select: {
-            posts: {
+            blog_posts: {
               where: {
                 status: 'PUBLISHED'
               }

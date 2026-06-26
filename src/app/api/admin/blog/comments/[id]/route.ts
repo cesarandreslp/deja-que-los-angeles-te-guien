@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+﻿import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
@@ -32,7 +32,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
     }
 
     // Verificar que el comentario existe
-    const existingComment = await prisma.blogComment.findUnique({
+    const existingComment = await prisma.blog_comments.findUnique({
       where: { id: params.id }
     })
 
@@ -44,18 +44,18 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
     }
 
     // Actualizar el estado del comentario
-    const comment = await prisma.blogComment.update({
+    const comment = await prisma.blog_comments.update({
       where: { id: params.id },
       data: { isApproved },
       include: {
-        user: {
+        User: {
           select: {
             id: true,
             fullName: true,
             email: true
           }
         },
-        post: {
+        blog_posts: {
           select: {
             id: true,
             title: true,
@@ -89,7 +89,7 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
     }
 
     // Verificar que el comentario existe
-    const existingComment = await prisma.blogComment.findUnique({
+    const existingComment = await prisma.blog_comments.findUnique({
       where: { id: params.id }
     })
 
@@ -101,7 +101,7 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
     }
 
     // Eliminar el comentario
-    await prisma.blogComment.delete({
+    await prisma.blog_comments.delete({
       where: { id: params.id }
     })
 

@@ -48,14 +48,14 @@ export async function GET(request: NextRequest) {
       prisma.blog_posts.findMany({
         where,
         include: {
-          author: {
+          User: {
             select: {
               id: true,
               fullName: true,
               email: true
             }
           },
-          category: {
+          blog_categories: {
             select: {
               id: true,
               name: true,
@@ -168,14 +168,14 @@ export async function POST(request: NextRequest) {
         publishedAt: status === 'PUBLISHED' ? (publishedAt || new Date()) : null
       },
       include: {
-        author: {
+        User: {
           select: {
             id: true,
             fullName: true,
             email: true
           }
         },
-        category: {
+        blog_categories: {
           select: {
             id: true,
             name: true,

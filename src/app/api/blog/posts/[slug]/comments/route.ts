@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+﻿import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
@@ -47,7 +47,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
 
     // Crear el comentario (pendiente de aprobación)
-    const comment = await prisma.blogComment.create({
+    const comment = await prisma.blog_comments.create({
       data: {
         content: content.trim(),
         postId: post.id,
@@ -55,7 +55,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         isApproved: false // Los comentarios requieren aprobación
       },
       include: {
-        user: {
+        User: {
           select: {
             id: true,
             fullName: true

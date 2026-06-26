@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+﻿import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
@@ -24,23 +24,23 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     const post = await prisma.blog_posts.findUnique({
       where: { id: params.id },
       include: {
-        author: {
+        User: {
           select: {
             id: true,
             fullName: true,
             email: true
           }
         },
-        category: {
+        blog_categories: {
           select: {
             id: true,
             name: true,
             slug: true
           }
         },
-        comments: {
+        blog_comments: {
           include: {
-            user: {
+            User: {
               select: {
                 id: true,
                 fullName: true,
@@ -162,14 +162,14 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
       where: { id: params.id },
       data: updateData,
       include: {
-        author: {
+        User: {
           select: {
             id: true,
             fullName: true,
             email: true
           }
         },
-        category: {
+        blog_categories: {
           select: {
             id: true,
             name: true,
@@ -220,7 +220,7 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
     }
 
     // Eliminar comentarios relacionados primero
-    await prisma.blogComment.deleteMany({
+    await prisma.blog_comments.deleteMany({
       where: { postId: params.id }
     })
 

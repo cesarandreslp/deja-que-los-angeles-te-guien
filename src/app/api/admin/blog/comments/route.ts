@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+﻿import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
@@ -37,17 +37,17 @@ export async function GET(request: NextRequest) {
     }
 
     const [comments, total] = await Promise.all([
-      prisma.blogComment.findMany({
+      prisma.blog_comments.findMany({
         where,
         include: {
-          user: {
+          User: {
             select: {
               id: true,
               fullName: true,
               email: true
             }
           },
-          post: {
+          blog_posts: {
             select: {
               id: true,
               title: true,
@@ -61,7 +61,7 @@ export async function GET(request: NextRequest) {
         skip,
         take: limit
       }),
-      prisma.blogComment.count({ where })
+      prisma.blog_comments.count({ where })
     ])
 
     return NextResponse.json({

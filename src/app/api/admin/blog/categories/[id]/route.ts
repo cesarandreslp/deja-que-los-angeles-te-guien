@@ -26,7 +26,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       include: {
         blog_posts: {
           include: {
-            author: {
+            User: {
               select: {
                 id: true,
                 fullName: true
