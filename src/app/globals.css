@@ -1,0 +1,732 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ====================================== */
+/* VARIABLES CSS ANGELICALES MEJORADAS   */
+/* ====================================== */
+
+:root {
+  /* Paleta CMYK Personalizada Global */
+  --primary-background: #002650; /* C100 M90 Y0 K50 - Fondo */
+  --primary-text: #F0E6D6; /* C0 M5 Y15 K5 - Texto */
+  --primary-text-secondary: #E0D0B8; /* Variante texto secundario */
+  --primary-accent: #00A0FF; /* C100 M40 Y0 K0 - Botón primario */
+  --primary-accent-secondary: #0050CC; /* C100 M80 Y0 K0 - Botón secundario */
+  --primary-navbar: #1A1A4D; /* C100 M100 Y40 K40 - Navbar/Footer */
+  --primary-footer: #1A1A4D; /* C100 M100 Y40 K40 - Footer */
+
+  /* Gradientes con nueva paleta */
+  --gradient-angelical: linear-gradient(135deg, #00A0FF 0%, #0050CC 100%);
+  --gradient-celestial: linear-gradient(135deg, #002650 0%, #00A0FF 50%, #0050CC 100%);
+  --gradient-divine: linear-gradient(135deg, #1A1A4D 0%, #00A0FF 25%, #0050CC 50%, #002650 100%);
+  --gradient-aura: linear-gradient(135deg, #003366 0%, #004080 100%);
+
+  /* Sombras con nueva paleta */
+  --shadow-soft: 0 4px 20px rgba(0, 160, 255, 0.15);
+  --shadow-medium: 0 8px 32px rgba(0, 160, 255, 0.2);
+  --shadow-strong: 0 16px 48px rgba(0, 160, 255, 0.3);
+  --shadow-divine: 0 20px 60px rgba(0, 160, 255, 0.4);
+
+  /* Colores de Texto con nueva paleta */
+  --text-primary: #F0E6D6; /* Texto principal claro */
+  --text-secondary: #E0D0B8; /* Texto secundario */
+  --text-accent: #00A0FF; /* Texto de acento */
+  --text-light: #F0E6D6; /* Texto claro */
+  --text-divine: #00A0FF; /* Texto divino */
+  
+  /* Tamaños de texto */
+  --text-secondary-size: 1.25rem; /* 20px para texto secundario */
+  --text-main-subtitle: 1.5rem;   /* 24px para subtítulo principal */
+  --text-section-subtitle: 1.375rem; /* 22px para subtítulos de sección */
+}
+
+/* Tema Celestial con paleta CMYK */
+.theme-celestial {
+  --bg-primary: var(--primary-background);
+  --bg-secondary: rgba(0, 38, 80, 0.1);
+  --bg-card: rgba(0, 38, 80, 0.8);
+  --text-primary: var(--primary-text);
+  --text-secondary: var(--primary-text-secondary);
+  --border-primary: rgba(0, 160, 255, 0.2);
+}
+
+/* Estilos Base con nueva paleta CMYK */
+body {
+  font-family: var(--font-inter);
+  background: var(--primary-background);
+  color: var(--primary-text);
+  line-height: 1.6;
+}
+
+/* ====================================== */
+/* ANIMACIONES ANGELICALES                */
+/* ====================================== */
+
+@keyframes angelical-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+@keyframes divine-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(139, 95, 191, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(139, 95, 191, 0.6);
+  }
+}
+
+@keyframes celestial-pulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes golden-star-twinkle {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(0.8) rotate(0deg);
+  }
+  25% {
+    opacity: 1;
+    transform: scale(1.4) rotate(45deg);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.2) rotate(90deg);
+  }
+  75% {
+    opacity: 1;
+    transform: scale(1.3) rotate(135deg);
+  }
+}
+
+@keyframes golden-star-float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+    opacity: 0.8;
+  }
+  25% {
+    transform: translateY(-25px) translateX(15px) rotate(90deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-15px) translateX(-10px) rotate(180deg);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translateY(-30px) translateX(12px) rotate(270deg);
+    opacity: 1;
+  }
+}
+
+@keyframes golden-star-cascade {
+  0% {
+    opacity: 0;
+    transform: translateY(-100vh) scale(0) rotate(0deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100vh) scale(1.2) rotate(360deg);
+  }
+}
+
+@keyframes golden-particle-drift {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.4;
+  }
+  33% {
+    transform: translateY(-30px) translateX(20px) scale(1.3);
+    opacity: 0.8;
+  }
+  66% {
+    transform: translateY(-15px) translateX(-15px) scale(0.9);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-50px) translateX(10px) scale(1.1);
+    opacity: 0.2;
+  }
+}
+
+@keyframes golden-star-mega-twinkle {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1) rotate(0deg);
+    filter: brightness(1);
+  }
+  25% {
+    opacity: 1;
+    transform: scale(1.3) rotate(90deg);
+    filter: brightness(1.5);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1) rotate(180deg);
+    filter: brightness(1.2);
+  }
+  75% {
+    opacity: 1;
+    transform: scale(1.4) rotate(270deg);
+    filter: brightness(1.6);
+  }
+}
+
+@keyframes golden-star-orbital {
+  0% {
+    transform: translateX(0px) translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateX(20px) translateY(-15px) rotate(90deg);
+  }
+  50% {
+    transform: translateX(0px) translateY(-25px) rotate(180deg);
+  }
+  75% {
+    transform: translateX(-20px) translateY(-10px) rotate(270deg);
+  }
+  100% {
+    transform: translateX(0px) translateY(0px) rotate(360deg);
+  }
+}
+
+@keyframes golden-star-magical-appear {
+  0%, 70% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  75% {
+    opacity: 0.5;
+    transform: scale(0.5) rotate(180deg);
+  }
+  85% {
+    opacity: 1;
+    transform: scale(1.2) rotate(270deg);
+  }
+  90% {
+    opacity: 0.8;
+    transform: scale(1) rotate(360deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0) rotate(360deg);
+  }
+}
+
+@keyframes golden-constellation-line {
+  0%, 80% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  85% {
+    opacity: 0.3;
+    transform: scaleX(0.5);
+  }
+  95% {
+    opacity: 0.6;
+    transform: scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX(1);
+  }
+}
+
+/* Nuevas animaciones para partículas circulares */
+@keyframes particle-float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translateY(-20px) translateX(15px);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(-10px) translateX(-8px);
+    opacity: 0.7;
+  }
+  75% {
+    transform: translateY(-25px) translateX(12px);
+    opacity: 0.8;
+  }
+}
+
+@keyframes particle-drift {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.5;
+  }
+  33% {
+    transform: translateY(-15px) translateX(20px) scale(1.2);
+    opacity: 0.8;
+  }
+  66% {
+    transform: translateY(-8px) translateX(-15px) scale(0.9);
+    opacity: 0.6;
+  }
+}
+
+@keyframes particle-cascade {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0);
+  }
+  10% {
+    opacity: 0.8;
+    transform: translateY(10px) scale(1);
+  }
+  90% {
+    opacity: 0.6;
+    transform: translateY(calc(100vh - 20px)) scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100vh) scale(0.8);
+  }
+}
+
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+/* ====================================== */
+/* CLASES DE UTILIDAD ANGELICALES        */
+/* ====================================== */
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animate-float {
+  animation: angelical-float 6s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: divine-glow 3s ease-in-out infinite;
+}
+
+.animate-pulse-soft {
+  animation: celestial-pulse 4s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+/* Partículas circulares doradas */
+.circular-particle {
+  position: absolute;
+  background: radial-gradient(circle, #FFD700 0%, rgba(255, 215, 0, 0.8) 50%, rgba(255, 215, 0, 0.2) 100%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  box-shadow: 
+    0 0 6px rgba(255, 215, 0, 0.6),
+    0 0 12px rgba(255, 215, 0, 0.3);
+}
+
+.particle-float {
+  animation: particle-float 6s ease-in-out infinite;
+}
+
+.particle-drift {
+  animation: particle-drift 8s ease-in-out infinite;
+}
+
+.particle-cascade {
+  animation: particle-cascade 8s linear infinite;
+}
+
+/* Líneas de constelación */
+.constellation-line {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 215, 0, 0), rgba(255, 215, 0, 0.6), rgba(255, 215, 0, 0));
+  transform-origin: left center;
+  pointer-events: none;
+  z-index: 0;
+  animation: golden-constellation-line 8s ease-in-out infinite;
+  box-shadow: 0 0 4px rgba(255, 215, 0, 0.4);
+}
+
+.golden-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #FFD700 0%, rgba(255, 215, 0, 0.8) 50%, rgba(255, 215, 0, 0.2) 100%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10;
+  animation: golden-particle-drift 4s ease-in-out infinite;
+  box-shadow: 
+    0 0 6px rgba(255, 215, 0, 0.8),
+    0 0 12px rgba(255, 215, 0, 0.4);
+}
+
+/* Contenedor de fondo con partículas */
+.particles-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Nebulosa de fondo sutil */
+.starry-background::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 50% 20%, rgba(255, 215, 0, 0.025) 0%, transparent 50%),
+    radial-gradient(circle at 30% 80%, rgba(255, 215, 0, 0.02) 0%, transparent 50%);
+  animation: nebula-drift 20s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes nebula-drift {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: rotate(2deg) scale(1.1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: rotate(-1deg) scale(0.9);
+    opacity: 0.4;
+  }
+}
+
+/* Diferentes tamaños de estrellas */
+.star-small {
+  font-size: 12px;
+}
+
+.star-medium {
+  font-size: 18px;
+}
+
+.star-large {
+  font-size: 24px;
+}
+
+.star-extra-large {
+  font-size: 32px;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+.animation-delay-1000 {
+  animation-delay: 1s;
+}
+
+.animation-delay-3000 {
+  animation-delay: 3s;
+}
+
+.animation-delay-5000 {
+  animation-delay: 5s;
+}
+
+.animation-delay-6000 {
+  animation-delay: 6s;
+}
+
+.animation-delay-7000 {
+  animation-delay: 7s;
+}
+
+.animation-delay-3000 {
+  animation-delay: 3s;
+}
+
+/* ====================================== */
+/* EFECTOS ESPECIALES ANGELICALES        */
+/* ====================================== */
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.divine-gradient {
+  background: var(--gradient-divine);
+}
+
+.celestial-gradient {
+  background: var(--gradient-celestial);
+}
+
+.angelical-gradient {
+  background: var(--gradient-angelical);
+}
+
+.text-gradient-divine {
+  background: var(--gradient-divine);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.shadow-divine {
+  box-shadow: var(--shadow-divine);
+}
+
+.shadow-angelical {
+  box-shadow: var(--shadow-strong);
+}
+
+.border-divine {
+  border: 2px solid;
+  border-image: var(--gradient-divine) 1;
+}
+
+/* ====================================== */
+/* SCROLLBAR ANGELICAL                    */
+/* ====================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(139, 95, 191, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gradient-celestial);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gradient-divine);
+}
+
+/* ====================================== */
+/* OVERRIDE TAMAÑOS DE TEXTO SECUNDARIO  */
+/* ====================================== */
+
+/* Override global para texto secundario más grande */
+.text-sm,
+p.text-sm,
+.text-sm p {
+  font-size: var(--text-secondary-size) !important;
+  line-height: 1.6 !important;
+}
+
+/* Específicamente para descripciones y subtítulos */
+.description-text,
+.subtitle-text,
+.feature-description {
+  font-size: var(--text-secondary-size) !important;
+  line-height: 1.7 !important;
+}
+
+/* Texto principal del home - subtítulo principal */
+.text-xl,
+p.text-xl {
+  font-size: var(--text-main-subtitle) !important;
+  line-height: 1.6 !important;
+}
+
+/* Responsive para subtítulo principal */
+@media (min-width: 768px) {
+  .text-xl.md\\:text-2xl,
+  p.text-xl.md\\:text-2xl {
+    font-size: 1.75rem !important; /* 28px en pantallas medianas y grandes */
+    line-height: 1.5 !important;
+  }
+}
+
+/* Subtítulos de sección */
+.text-lg,
+p.text-lg {
+  font-size: var(--text-section-subtitle) !important;
+  line-height: 1.6 !important;
+}
+
+/* Estilos específicos para la página principal */
+.hero-subtitle {
+  font-size: var(--text-main-subtitle) !important;
+  line-height: 1.6 !important;
+}
+
+@media (min-width: 768px) {
+  .hero-subtitle {
+    font-size: 1.75rem !important; /* 28px */
+    line-height: 1.5 !important;
+  }
+}
+
+.section-subtitle {
+  font-size: var(--text-section-subtitle) !important;
+  line-height: 1.6 !important;
+}
+
+.service-description {
+  font-size: var(--text-secondary-size) !important;
+  line-height: 1.7 !important;
+}
+
+/* Override más específico para home page con mayor especificidad */
+body .new-theme-enabled .text-xl,
+body .new-theme-enabled p.text-xl {
+  font-size: var(--text-main-subtitle) !important;
+  line-height: 1.6 !important;
+}
+
+@media (min-width: 768px) {
+  body .new-theme-enabled .text-xl.md\\:text-2xl,
+  body .new-theme-enabled p.text-xl.md\\:text-2xl {
+    font-size: 1.75rem !important; /* 28px */
+    line-height: 1.5 !important;
+  }
+}
+
+body .new-theme-enabled .text-lg,
+body .new-theme-enabled p.text-lg {
+  font-size: var(--text-section-subtitle) !important;
+  line-height: 1.6 !important;
+}
+
+body .new-theme-enabled .text-sm,
+body .new-theme-enabled p.text-sm {
+  font-size: var(--text-secondary-size) !important;
+  line-height: 1.7 !important;
+}
+
+/* ====================================== */
+/* ICONOS DE SERVICIOS - VISIBILIDAD     */
+/* ====================================== */
+
+/* Asegurar que los iconos y tarjetas sean visibles por encima del fondo */
+.card {
+  position: relative;
+  z-index: 2;
+  background: inherit;
+}
+
+/* Forzar visibilidad de iconos SVG */
+.card svg,
+.service-icon,
+.feature-icon {
+  position: relative !important;
+  z-index: 10 !important;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* Círculos de iconos específicamente */
+.card .w-16.h-16.rounded-full {
+  position: relative;
+  z-index: 5;
+}
+
+.card .w-16.h-16.rounded-full svg {
+  position: relative !important;
+  z-index: 10 !important;
+  opacity: 1 !important;
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Contenedor principal por encima del fondo */
+.main-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Secciones por encima del fondo */
+section {
+  position: relative;
+  z-index: 1;
+}
+
+/* Override específico para iconos Heroicons */
+svg[class*="w-8"]:not(.particles-background svg) {
+  position: relative !important;
+  z-index: 15 !important;
+  opacity: 1 !important;
+  display: inline-block !important;
+  visibility: visible !important;
+}
+
+/* Círculos de iconos limpios */
+.card .w-16.h-16.rounded-full {
+  transition: all 0.3s ease;
+}
+
+.card .w-16.h-16.rounded-full svg {
+  transition: all 0.3s ease;
+}
+
+/* Hover effect para los círculos */
+.card:hover .w-16.h-16.rounded-full {
+  border-color: #00A0FF;
+  box-shadow: 0 0 20px rgba(26, 26, 77, 0.3);
+}
+
+.card:hover .w-16.h-16.rounded-full svg {
+  color: #00A0FF !important;
+  transform: scale(1.1);
+}

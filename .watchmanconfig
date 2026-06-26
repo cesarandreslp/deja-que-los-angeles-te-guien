@@ -1,0 +1,11 @@
+{
+  "ignore_dirs": [
+    "node_modules",
+    ".next",
+    ".git",
+    "*.log",
+    "DumpStack.log.tmp"
+  ],
+  "ignore_vcs": [".git", ".hg", ".svn"],
+  "settle": 1000
+}

@@ -1,0 +1,704 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model accounts {
+  id                String   @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  User             User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model app_configs {
+  id           String   @id @default(cuid())
+  theme        AppTheme @default(CELESTIAL)
+  primaryColor String?
+  appName      String   @default("Oráculo Angelical")
+  logoUrl      String?
+  staticTexts  Json     @default("{}")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model arcangel_chat_cards {
+  id                     String                   @id @default(cuid())
+  code                   String                   @unique
+  name                   String
+  description            String
+  imageUrl               String
+  arcangel               String
+  specialties            String[]
+  isActive               Boolean                  @default(true)
+  createdAt              DateTime                 @default(now())
+  updatedAt              DateTime                 @updatedAt
+  arcangel_conversations arcangel_conversations[]
+}
+
+model arcangel_conversations {
+  id                  String              @id @default(cuid())
+  userId              String
+  chatCardId          String
+  arcangel            String
+  question            String
+  response            String
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+  arcangel_chat_cards arcangel_chat_cards @relation(fields: [chatCardId], references: [id])
+  User               User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+}
+
+model Archangel {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  imageUrl    String
+  description String
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  cards       Card[]
+
+  @@map("archangels")
+}
+
+model blog_categories {
+  id          String       @id @default(cuid())
+  name        String
+  slug        String       @unique
+  description String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  blog_posts  blog_posts[]
+
+  @@index([slug])
+}
+
+model blog_comments {
+  id         String     @id @default(cuid())
+  postId     String
+  userId     String
+  content    String
+  isApproved Boolean    @default(false)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  blog_posts blog_posts @relation(fields: [postId], references: [id], onDelete: Cascade)
+  User      User      @relation(fields: [userId], references: [id])
+
+  @@index([isApproved])
+  @@index([postId])
+  @@index([userId])
+}
+
+model blog_posts {
+  id              String          @id @default(cuid())
+  title           String
+  slug            String          @unique
+  content         String
+  excerpt         String
+  coverImage      String?
+  authorId        String
+  categoryId      String
+  status          BlogPostStatus  @default(DRAFT)
+  tags            String[]
+  publishedAt     DateTime?
+  views           Int             @default(0)
+  likes           Int             @default(0)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  blog_comments   blog_comments[]
+  User           User           @relation(fields: [authorId], references: [id])
+  blog_categories blog_categories @relation(fields: [categoryId], references: [id])
+
+  @@index([authorId])
+  @@index([categoryId])
+  @@index([publishedAt])
+  @@index([slug])
+  @@index([status])
+}
+
+model Card {
+  id            String     @id @default(cuid())
+  name          String
+  description   String
+  imageUrl      String
+  arcangel      String
+  meaning       String?
+  isActive      Boolean    @default(true)
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  code          String     @unique
+  definition    String?
+  shortMsg      String?
+  title         String?
+  archangelRel  Archangel  @relation(fields: [arcangel], references: [name])
+
+  @@map("cards")
+}
+
+model cart_items {
+  id                  String               @id @default(cuid())
+  cartId              String
+  productId           String?
+  videoConsultationId String?
+  quantity            Int                  @default(1)
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  carts               carts                @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  products            products?            @relation(fields: [productId], references: [id])
+  video_consultations video_consultations? @relation(fields: [videoConsultationId], references: [id])
+}
+
+model carts {
+  id         String       @id @default(cuid())
+  userId     String       @unique
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  cart_items cart_items[]
+  User      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model commissions {
+  id          String           @id @default(cuid())
+  consultorId String
+  amountCents Int
+  status      CommissionStatus @default(PENDING)
+  description String?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  User       User            @relation(fields: [consultorId], references: [id], onDelete: Cascade)
+}
+
+model configs {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model consultant_availability {
+  id           String   @id @default(cuid())
+  consultantId String
+  dayOfWeek    Int
+  startTime    String
+  endTime      String
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([consultantId, dayOfWeek, startTime])
+  @@index([consultantId])
+  @@index([dayOfWeek])
+}
+
+model consultant_blocked_dates {
+  id           String   @id @default(cuid())
+  consultantId String
+  blockedDate  DateTime
+  reason       String?
+  createdAt    DateTime @default(now())
+
+  @@unique([consultantId, blockedDate])
+  @@index([blockedDate])
+  @@index([consultantId])
+}
+
+model consultation_reminders {
+  id                  String              @id @default(cuid())
+  consultationId      String
+  userId              String
+  reminderTime        DateTime
+  message             String
+  type                ReminderType        @default(PUSH_NOTIFICATION)
+  status              ReminderStatus      @default(PENDING)
+  sentAt              DateTime?
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+  video_consultations video_consultations @relation(fields: [consultationId], references: [id], onDelete: Cascade)
+  User               User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model consultation_reviews {
+  id                  String              @id @default(cuid())
+  consultationId      String              @unique
+  userId              String
+  consultantId        String
+  rating              Int
+  comment             String?
+  isVisible           Boolean             @default(true)
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+  video_consultations video_consultations @relation(fields: [consultationId], references: [id], onDelete: Cascade)
+
+  @@index([consultantId])
+  @@index([createdAt])
+  @@index([rating])
+}
+
+model contact_messages {
+  id               String        @id @default(cuid())
+  name             String
+  email            String
+  phone            String?
+  subject          String
+  message          String
+  consultationType String
+  status           ContactStatus @default(PENDING)
+  response         String?
+  respondedAt      DateTime?
+  respondedBy      String?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+}
+
+model MembershipPlan {
+  id               String             @id @default(cuid())
+  name             String
+  description      String
+  priceCents       Int
+  currency         String
+  durationDays     Int
+  isActive         Boolean            @default(true)
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  userMemberships  UserMembership[]
+
+  @@map("membership_plans")
+}
+
+model Membership {
+  id          String           @id @default(cuid())
+  userId      String           @unique
+  type        MembershipType
+  status      MembershipStatus @default(ACTIVE)
+  startDate   DateTime         @default(now())
+  endDate     DateTime
+  autoRenewal Boolean          @default(false)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  User       User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("memberships")
+}
+
+model mentor_consultations {
+  id        String         @id @default(cuid())
+  userId    String
+  arcangel  MentorArcangel
+  question  String
+  answer    String
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  User     User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+}
+
+model OracleMessage {
+  id              String          @id @default(cuid())
+  readingId       String
+  role            String
+  content         String
+  createdAt       DateTime        @default(now())
+  reading         Reading         @relation(fields: [readingId], references: [id])
+
+  @@map("oracle_messages")
+}
+
+model Reading {
+  id              String            @id @default(cuid())
+  userId          String?
+  question        String
+  type            Int
+  selectedIds     String[]
+  createdAt       DateTime          @default(now())
+  messages        OracleMessage[]
+  user            User?            @relation(fields: [userId], references: [id])
+
+  @@map("oracle_readings")
+}
+
+model order_items {
+  id                  String               @id @default(cuid())
+  orderId             String
+  productId           String?
+  quantity            Int                  @default(1)
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  currency            String               @default("COP")
+  priceCents          Int
+  videoConsultationId String?
+  subtotalCents       Int
+  taxCents            Int                  @default(0)
+  taxRate             Float                @default(0)
+  totalCents          Int
+  orders              Order                @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  products            products?            @relation(fields: [productId], references: [id], onDelete: Cascade)
+  video_consultations video_consultations? @relation(fields: [videoConsultationId], references: [id])
+}
+
+model Order {
+  id              String           @id @default(cuid())
+  userId          String
+  totalCents      Int
+  status          OrderStatus      @default(PENDING)
+  paymentId       String?
+  shippingAddress String?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  currency        String           @default("COP")
+  paymentProvider PaymentProvider?
+  paymentStatus   PaymentStatus    @default(PENDING)
+  shippingNotes   String?
+  shippingPhone   String?
+  shippingCents   Int              @default(0)
+  subtotalCents   Int
+  taxCents        Int              @default(0)
+  taxRate         Float            @default(0)
+  order_items     order_items[]
+  User           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("orders")
+}
+
+model password_reset_tokens {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  expires   DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  User     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model products {
+  id          String          @id @default(cuid())
+  name        String
+  description String
+  stock       Int             @default(0)
+  imageUrls   String[]
+  isActive    Boolean         @default(true)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  currency    String          @default("COP")
+  priceCents  Int
+  category    ProductCategory @default(ACCESSORIES)
+  cart_items  cart_items[]
+  order_items order_items[]
+}
+
+model push_subscriptions {
+  id        String   @id @default(cuid())
+  userId    String
+  endpoint  String
+  p256dhKey String
+  authKey   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  User     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, endpoint])
+}
+
+model sessions {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  User        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model StoreConfig {
+  id                    String   @id @default(cuid())
+  taxEnabled            Boolean  @default(true)
+  defaultTaxRate        Float    @default(0.19)
+  taxName               String   @default("IVA")
+  shippingEnabled       Boolean  @default(true)
+  freeShippingThreshold Int      @default(5000000)
+  standardShippingCents Int      @default(500000)
+  currency              String   @default("COP")
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@map("store_configs")
+}
+
+model system_configs {
+  id        String   @id @default(cuid())
+  category  String
+  key       String
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([category, key])
+}
+
+model UserMembership {
+  id               String           @id @default(cuid())
+  userId           String
+  membershipPlanId String
+  status           MembershipStatus @default(PENDING)
+  paymentProvider  PaymentProvider?
+  paymentStatus    PaymentStatus    @default(PENDING)
+  paymentId        String?
+  startDate        DateTime?
+  endDate          DateTime?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  membershipPlan   MembershipPlan   @relation(fields: [membershipPlanId], references: [id])
+  user             User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([endDate])
+  @@index([status])
+  @@index([userId])
+  @@map("user_memberships")
+}
+
+model User {
+  id                                                         String                   @id @default(cuid())
+  fullName                                                   String
+  email                                                      String                   @unique
+  passwordHash                                               String?
+  dateOfBirth                                                DateTime?
+  country                                                    String?
+  gender                                                     Gender?
+  phone                                                      String?
+  profileImage                                               String?
+  role                                                       Role                     @default(USER)
+  isActive                                                   Boolean                  @default(false)
+  createdAt                                                  DateTime                 @default(now())
+  updatedAt                                                  DateTime                 @updatedAt
+  mentorArcangel                                             MentorArcangel?
+  bio                                                        String?
+  consultantRating                                           Float?                   @default(0.0)
+  hourlyRate                                                 Int?
+  isAvailableForConsultations                                Boolean                  @default(false)
+  specialty                                                  String?
+  totalConsultationsCompleted                                Int                      @default(0)
+  accounts                                                   accounts[]
+  arcangel_conversations                                     arcangel_conversations[]
+  blog_comments                                              blog_comments[]
+  blog_posts                                                 blog_posts[]
+  carts                                                      carts?
+  commissions                                                commissions[]
+  consultation_reminders                                     consultation_reminders[]
+  memberships                                                Membership?
+  mentor_consultations                                       mentor_consultations[]
+  readings                                                   Reading[]
+  orders                                                     Order[]
+  password_reset_tokens                                      password_reset_tokens[]
+  push_subscriptions                                         push_subscriptions[]
+  sessions                                                   sessions[]
+  userMemberships                                            UserMembership[]
+  verification_tokens                                        verification_tokens[]
+  video_consultations_video_consultations_consultorIdTousers video_consultations[]    @relation("video_consultations_consultorIdTousers")
+  video_consultations_video_consultations_userIdTousers      video_consultations[]    @relation("video_consultations_userIdTousers")
+
+  @@map("users")
+}
+
+model verification_tokens {
+  id         String   @id @default(cuid())
+  identifier String
+  token      String   @unique
+  expires    DateTime
+  userId     String?
+  User      User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([identifier, token])
+}
+
+model video_consultations {
+  id                                           String                   @id @default(cuid())
+  userId                                       String
+  consultorId                                  String?
+  scheduledAt                                  DateTime
+  duration                                     Int                      @default(60)
+  status                                       ConsultationStatus       @default(SCHEDULED)
+  meetingLink                                  String?
+  price                                        Int
+  notes                                        String?
+  rating                                       Int?
+  createdAt                                    DateTime                 @default(now())
+  updatedAt                                    DateTime                 @updatedAt
+  actualDuration                               Int?
+  actualEndTime                                DateTime?
+  actualStartTime                              DateTime?
+  attendanceNotes                              String?
+  attendanceStatus                             AttendanceStatus         @default(PENDING)
+  consultantId                                 String?
+  consultorJoinedAt                            DateTime?
+  consultorLeftAt                              DateTime?
+  date                                         DateTime?
+  lastReminderSent                             DateTime?
+  paymentProvider                              PaymentProvider?
+  paymentStatus                                PaymentStatus            @default(PENDING)
+  remindersSent                                Int                      @default(0)
+  time                                         String?
+  userJoinedAt                                 DateTime?
+  userLeftAt                                   DateTime?
+  videoLink                                    String?
+  cart_items                                   cart_items[]
+  consultation_reminders                       consultation_reminders[]
+  consultation_reviews                         consultation_reviews?
+  order_items                                  order_items[]
+  User_video_consultations_consultorIdTousers User?                   @relation("video_consultations_consultorIdTousers", fields: [consultorId], references: [id])
+  User_video_consultations_userIdTousers      User                    @relation("video_consultations_userIdTousers", fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum AppTheme {
+  LIGHT
+  DARK
+  CELESTIAL
+  AURORA
+  ARCANGELES
+  MINIMAL
+  CUSTOM
+  ORACULO
+}
+
+enum AttendanceStatus {
+  PENDING
+  USER_JOINED
+  CONSULTANT_JOINED
+  BOTH_JOINED
+  USER_LEFT
+  CONSULTANT_LEFT
+  COMPLETED
+  USER_NO_SHOW
+  CONSULTANT_NO_SHOW
+  BOTH_NO_SHOW
+  CANCELLED
+}
+
+enum BlogPostStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum CommissionStatus {
+  PENDING
+  PAID
+  CANCELLED
+}
+
+enum ConsultationStatus {
+  SCHEDULED
+  CONFIRMED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  RESCHEDULED
+  NO_SHOW
+  PENDING
+  PAID
+  ATTENDED
+  REPROGRAMMED
+}
+
+enum ContactStatus {
+  PENDING
+  IN_PROGRESS
+  RESPONDED
+  CLOSED
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+enum MembershipStatus {
+  ACTIVE
+  EXPIRED
+  CANCELLED
+  SUSPENDED
+  PENDING
+}
+
+enum MembershipType {
+  MONTHLY
+  ANNUAL
+  LIFETIME
+}
+
+enum MentorArcangel {
+  JOFIEL
+  CHAMUEL
+  GABRIEL
+  RAFAEL
+  URIEL
+  ZADKIEL
+  MIGUEL
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentProvider {
+  MERCADOPAGO
+  STRIPE
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}
+
+enum ProductCategory {
+  CLOTHING
+  JEWELRY
+  ESSENCES
+  OILS
+  RITUALS
+  ACCESSORIES
+}
+
+enum ReminderStatus {
+  PENDING
+  SENT
+  FAILED
+  CANCELLED
+}
+
+enum ReminderType {
+  EMAIL
+  PUSH_NOTIFICATION
+  SMS
+}
+
+enum Role {
+  USER
+  CONSULTANT
+  ADMIN
+}

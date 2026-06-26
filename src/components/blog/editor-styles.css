@@ -1,0 +1,206 @@
+/* Estilos para el editor TipTap */
+.ProseMirror {
+  min-height: 400px;
+  padding: 1rem;
+  outline: none;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Headings */
+.ProseMirror h1 {
+  font-size: 2em;
+  font-weight: 700;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  line-height: 1.2;
+}
+
+.ProseMirror h2 {
+  font-size: 1.5em;
+  font-weight: 700;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+.ProseMirror h3 {
+  font-size: 1.25em;
+  font-weight: 600;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  line-height: 1.4;
+}
+
+/* Paragraph */
+.ProseMirror p {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+  line-height: 1.6;
+}
+
+/* Lists */
+.ProseMirror ul,
+.ProseMirror ol {
+  padding-left: 1.5rem;
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+.ProseMirror ul li {
+  list-style-type: disc;
+  margin-bottom: 0.25em;
+}
+
+.ProseMirror ol li {
+  list-style-type: decimal;
+  margin-bottom: 0.25em;
+}
+
+/* Blockquote */
+.ProseMirror blockquote {
+  border-left: 4px solid #9333ea;
+  padding-left: 1rem;
+  margin-left: 0;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  font-style: italic;
+  color: #6b7280;
+}
+
+.dark .ProseMirror blockquote {
+  color: #9ca3af;
+  border-left-color: #a855f7;
+}
+
+/* Code */
+.ProseMirror code {
+  background-color: #f3f4f6;
+  color: #e11d48;
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9em;
+}
+
+.dark .ProseMirror code {
+  background-color: #374151;
+  color: #fb7185;
+}
+
+/* Code Block */
+.ProseMirror pre {
+  background-color: #1e293b;
+  color: #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  overflow-x: auto;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.ProseMirror pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+}
+
+/* Horizontal Rule */
+.ProseMirror hr {
+  border: none;
+  border-top: 2px solid #e5e7eb;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.dark .ProseMirror hr {
+  border-top-color: #4b5563;
+}
+
+/* Image */
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+/* Link */
+.ProseMirror a {
+  color: #9333ea;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ProseMirror a:hover {
+  color: #7e22ce;
+}
+
+.dark .ProseMirror a {
+  color: #a855f7;
+}
+
+.dark .ProseMirror a:hover {
+  color: #c084fc;
+}
+
+/* Selection */
+.ProseMirror ::selection {
+  background-color: #ddd6fe;
+}
+
+.dark .ProseMirror ::selection {
+  background-color: #6b21a8;
+}
+
+/* Focus */
+.ProseMirror:focus {
+  outline: none;
+}
+
+/* Syntax Highlighting for Code Blocks */
+.ProseMirror .hljs-comment,
+.ProseMirror .hljs-quote {
+  color: #64748b;
+}
+
+.ProseMirror .hljs-keyword,
+.ProseMirror .hljs-selector-tag,
+.ProseMirror .hljs-type {
+  color: #c084fc;
+}
+
+.ProseMirror .hljs-string,
+.ProseMirror .hljs-regexp {
+  color: #34d399;
+}
+
+.ProseMirror .hljs-number,
+.ProseMirror .hljs-literal {
+  color: #fb923c;
+}
+
+.ProseMirror .hljs-function {
+  color: #60a5fa;
+}
+
+.ProseMirror .hljs-variable {
+  color: #fbbf24;
+}
+
+.ProseMirror .hljs-class,
+.ProseMirror .hljs-title {
+  color: #f472b6;
+}

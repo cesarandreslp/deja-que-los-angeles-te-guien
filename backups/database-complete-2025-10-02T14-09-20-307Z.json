@@ -1,0 +1,633 @@
+{
+  "timestamp": "2025-10-02T14:09:15.407Z",
+  "version": "1.0.0",
+  "data": {
+    "users": [
+      {
+        "id": "45072a57-d8c1-4833-977c-1f2036122bd6",
+        "fullName": "Prueb@123456",
+        "email": "Prueb@123456.com",
+        "passwordHash": "$2a$12$rLP4nOoBCn1E9ii/sfFDtuLk1GbxGykxRiZwEM5WcF6/Pjo7vuefK",
+        "dateOfBirth": "1991-07-06T00:00:00.000Z",
+        "country": "CO",
+        "gender": "MALE",
+        "phone": null,
+        "profileImage": null,
+        "role": "USER",
+        "isActive": true,
+        "createdAt": "2025-09-30T22:04:51.855Z",
+        "updatedAt": "2025-09-30T22:04:51.855Z",
+        "accounts": [],
+        "sessions": [],
+        "verificationTokens": [
+          {
+            "id": "cmg73vcrp0001b057v2cosh42",
+            "identifier": "Prueb@123456.com",
+            "token": "o3682961rd9c8vf6nabykemg73vcrh",
+            "expires": "2025-10-01T22:04:52.445Z",
+            "userId": "45072a57-d8c1-4833-977c-1f2036122bd6"
+          }
+        ],
+        "resetTokens": [],
+        "commissions": [],
+        "orders": [],
+        "cart": null,
+        "membership": null,
+        "userMemberships": [],
+        "userConsultations": [],
+        "consultorConsultations": [],
+        "readings": []
+      },
+      {
+        "id": "5eefd6b5-b3b7-4941-9a08-6228b5991b6d",
+        "fullName": "Usuario de Prueba",
+        "email": "user.test@oraculo.com",
+        "passwordHash": "$2a$12$1weayMmKU3Lo/HiuGL/xHemeW3HSTKHFbt4Ec1vAJUsTDpcsjemlm",
+        "dateOfBirth": null,
+        "country": null,
+        "gender": null,
+        "phone": null,
+        "profileImage": null,
+        "role": "USER",
+        "isActive": true,
+        "createdAt": "2025-09-30T22:14:02.625Z",
+        "updatedAt": "2025-09-30T22:14:02.625Z",
+        "accounts": [],
+        "sessions": [],
+        "verificationTokens": [],
+        "resetTokens": [],
+        "commissions": [],
+        "orders": [],
+        "cart": null,
+        "membership": null,
+        "userMemberships": [],
+        "userConsultations": [
+          {
+            "id": "cmg7477h100014oahw29kxj9s",
+            "userId": "5eefd6b5-b3b7-4941-9a08-6228b5991b6d",
+            "consultorId": "ba71c2d1-bf6c-4658-be41-1e559e47eeb2",
+            "consultantId": null,
+            "scheduledAt": "2025-10-01T22:14:05.444Z",
+            "date": null,
+            "time": null,
+            "duration": 60,
+            "status": "NO_SHOW",
+            "meetingLink": "https://meet.jit.si/test-room-123",
+            "videoLink": null,
+            "price": 5000,
+            "paymentProvider": null,
+            "paymentStatus": "PENDING",
+            "notes": "Consulta de prueba para testing",
+            "rating": null,
+            "userJoinedAt": null,
+            "consultorJoinedAt": null,
+            "userLeftAt": null,
+            "consultorLeftAt": null,
+            "actualStartTime": null,
+            "actualEndTime": null,
+            "actualDuration": null,
+            "attendanceStatus": "BOTH_NO_SHOW",
+            "attendanceNotes": "Marcado como no-show automáticamente el 2/10/2025, 8:30:02 a. m.",
+            "remindersSent": 0,
+            "lastReminderSent": null,
+            "createdAt": "2025-09-30T22:14:05.458Z",
+            "updatedAt": "2025-10-02T13:30:02.984Z"
+          }
+        ],
+        "consultorConsultations": [],
+        "readings": []
+      },
+      {
+        "id": "ba71c2d1-bf6c-4658-be41-1e559e47eeb2",
+        "fullName": "Consultor de Prueba",
+        "email": "consultor.test@oraculo.com",
+        "passwordHash": "$2a$12$O1va.m0VPqNrb56HpWU1E.PEMGFjgIdDt55UGmwo2ArvJ6fhv3en2",
+        "dateOfBirth": null,
+        "country": null,
+        "gender": null,
+        "phone": null,
+        "profileImage": null,
+        "role": "CONSULTANT",
+        "isActive": true,
+        "createdAt": "2025-09-30T22:14:03.935Z",
+        "updatedAt": "2025-09-30T22:14:03.935Z",
+        "accounts": [],
+        "sessions": [],
+        "verificationTokens": [],
+        "resetTokens": [],
+        "commissions": [],
+        "orders": [],
+        "cart": null,
+        "membership": null,
+        "userMemberships": [],
+        "userConsultations": [],
+        "consultorConsultations": [
+          {
+            "id": "cmg7477h100014oahw29kxj9s",
+            "userId": "5eefd6b5-b3b7-4941-9a08-6228b5991b6d",
+            "consultorId": "ba71c2d1-bf6c-4658-be41-1e559e47eeb2",
+            "consultantId": null,
+            "scheduledAt": "2025-10-01T22:14:05.444Z",
+            "date": null,
+            "time": null,
+            "duration": 60,
+            "status": "NO_SHOW",
+            "meetingLink": "https://meet.jit.si/test-room-123",
+            "videoLink": null,
+            "price": 5000,
+            "paymentProvider": null,
+            "paymentStatus": "PENDING",
+            "notes": "Consulta de prueba para testing",
+            "rating": null,
+            "userJoinedAt": null,
+            "consultorJoinedAt": null,
+            "userLeftAt": null,
+            "consultorLeftAt": null,
+            "actualStartTime": null,
+            "actualEndTime": null,
+            "actualDuration": null,
+            "attendanceStatus": "BOTH_NO_SHOW",
+            "attendanceNotes": "Marcado como no-show automáticamente el 2/10/2025, 8:30:02 a. m.",
+            "remindersSent": 0,
+            "lastReminderSent": null,
+            "createdAt": "2025-09-30T22:14:05.458Z",
+            "updatedAt": "2025-10-02T13:30:02.984Z"
+          }
+        ],
+        "readings": []
+      },
+      {
+        "id": "71002162-dcb9-4506-ac12-d56709b8bb80",
+        "fullName": "María González - Especialista en Tarot",
+        "email": "maria.consultora@oraculo.com",
+        "passwordHash": "$2a$12$DYMkwB4rXoxWOBlyIcu0a.kJPCxQyi9XNYBcT054/Z6hqF.gGS.3C",
+        "dateOfBirth": null,
+        "country": null,
+        "gender": null,
+        "phone": null,
+        "profileImage": null,
+        "role": "CONSULTANT",
+        "isActive": true,
+        "createdAt": "2025-09-30T22:14:04.945Z",
+        "updatedAt": "2025-09-30T22:14:04.945Z",
+        "accounts": [],
+        "sessions": [],
+        "verificationTokens": [],
+        "resetTokens": [],
+        "commissions": [],
+        "orders": [],
+        "cart": null,
+        "membership": null,
+        "userMemberships": [],
+        "userConsultations": [],
+        "consultorConsultations": [],
+        "readings": []
+      },
+      {
+        "id": "01a42b8c-aefb-42f4-879c-204eacb03416",
+        "fullName": "Administrador del Sistema",
+        "email": "admin@oraculo.com",
+        "passwordHash": "$2a$12$UeILp.aCaB20cP5gUELg6O2p0NvbpqlJQCrTLF/T7eDbn99Kjb0wa",
+        "dateOfBirth": null,
+        "country": "MX",
+        "gender": null,
+        "phone": "+52 55 1234 5678",
+        "profileImage": null,
+        "role": "ADMIN",
+        "isActive": true,
+        "createdAt": "2025-09-30T22:14:41.876Z",
+        "updatedAt": "2025-09-30T22:14:41.876Z",
+        "accounts": [],
+        "sessions": [],
+        "verificationTokens": [],
+        "resetTokens": [],
+        "commissions": [],
+        "orders": [],
+        "cart": null,
+        "membership": null,
+        "userMemberships": [],
+        "userConsultations": [],
+        "consultorConsultations": [],
+        "readings": []
+      },
+      {
+        "id": "030321d3-6afa-4394-86e2-7543a65dd615",
+        "fullName": "María Consultor",
+        "email": "consultor@oraculo.com",
+        "passwordHash": "$2a$12$DBb8gPIBUnmQ9kUexKLLKuOPv2fsX/KJROeG/mARm5djc1maxRp9m",
+        "dateOfBirth": null,
+        "country": "MX",
+        "gender": null,
+        "phone": "+52 55 9876 5432",
+        "profileImage": null,
+        "role": "CONSULTANT",
+        "isActive": true,
+        "createdAt": "2025-09-30T22:14:42.650Z",
+        "updatedAt": "2025-09-30T22:14:42.650Z",
+        "accounts": [],
+        "sessions": [],
+        "verificationTokens": [],
+        "resetTokens": [],
+        "commissions": [],
+        "orders": [],
+        "cart": null,
+        "membership": null,
+        "userMemberships": [],
+        "userConsultations": [],
+        "consultorConsultations": [],
+        "readings": []
+      },
+      {
+        "id": "7e94f65d-7e7b-4756-bd7b-c9f54085d0ff",
+        "fullName": "Juan Usuario",
+        "email": "usuario@oraculo.com",
+        "passwordHash": "$2a$12$ws8vaIZtYzaM0JJn15ESaeT1vp9ZDVqv3cgEpLHCwuJ3s1Sv6Q3tO",
+        "dateOfBirth": null,
+        "country": "MX",
+        "gender": null,
+        "phone": "+52 55 1111 2222",
+        "profileImage": null,
+        "role": "USER",
+        "isActive": true,
+        "createdAt": "2025-09-30T22:14:43.236Z",
+        "updatedAt": "2025-09-30T22:14:43.236Z",
+        "accounts": [],
+        "sessions": [],
+        "verificationTokens": [],
+        "resetTokens": [],
+        "commissions": [],
+        "orders": [],
+        "cart": null,
+        "membership": null,
+        "userMemberships": [],
+        "userConsultations": [],
+        "consultorConsultations": [],
+        "readings": []
+      },
+      {
+        "id": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+        "fullName": "Usuario Tester",
+        "email": "tester@oraculo.com",
+        "passwordHash": "$2a$12$J0DdrtvtZWEtrN.vcXWOkuKONXkysWovT1R88eX3O10LpaLBj.YiO",
+        "dateOfBirth": null,
+        "country": "Colombia",
+        "gender": "OTHER",
+        "phone": "+57 300 123 4567",
+        "profileImage": null,
+        "role": "USER",
+        "isActive": true,
+        "createdAt": "2025-10-01T15:09:56.898Z",
+        "updatedAt": "2025-10-01T15:09:56.898Z",
+        "accounts": [],
+        "sessions": [],
+        "verificationTokens": [],
+        "resetTokens": [],
+        "commissions": [],
+        "orders": [],
+        "cart": null,
+        "membership": null,
+        "userMemberships": [],
+        "userConsultations": [],
+        "consultorConsultations": [],
+        "readings": [
+          {
+            "id": "48ac7aeb-8226-4883-afab-fc32720709d0",
+            "userId": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+            "question": "deseo guia sobre mi futuro contrato",
+            "type": 3,
+            "selectedIds": [
+              "cmg82obd8000qedib29jwfazw",
+              "cmg82oa840009edib4h4mvqqm",
+              "cmg82ockg0018edib8zmdo20v"
+            ],
+            "createdAt": "2025-10-01T15:34:32.396Z",
+            "messages": []
+          },
+          {
+            "id": "e534e35e-7501-4f0e-a249-1fd7b8216d29",
+            "userId": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+            "question": "¿Qué necesito saber sobre mi futuro amoroso?",
+            "type": 9,
+            "selectedIds": [
+              "cmg82o9rd0002edib6h4trkoe",
+              "cmg82oa840009edib4h4mvqqm",
+              "cmg82ocas0014edibd7u1vr8b",
+              "cmg82oci20017edibldj33v7i",
+              "cmg82oaf7000cedibvrrua003",
+              "cmg82obhz000sedib0rg2qi73",
+              "cmg82oar9000hedibi40t8g4x",
+              "cmg82o9fr0001edib9cp3dyqt",
+              "cmg82oaow000gedibepncgmlu"
+            ],
+            "createdAt": "2025-10-01T16:53:27.417Z",
+            "messages": []
+          },
+          {
+            "id": "d959c10b-4f03-41ec-a2bc-cbaccbe34354",
+            "userId": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+            "question": "¿Cuál es mi propósito de vida en este momento?",
+            "type": 9,
+            "selectedIds": [
+              "cmg82oats000iedibcc7na6dv",
+              "cmg82oc8d0013edibdi1vkc48",
+              "cmg82oa840009edib4h4mvqqm",
+              "cmg82o9fr0001edib9cp3dyqt",
+              "cmg82oak5000eedibz2i7fi52",
+              "cmg82oa3e0007edib8mxua9x8",
+              "cmg82obyp000zedibbjhm8lap",
+              "cmg82ocfp0016edib2g488mux",
+              "cmg82ob5r000nedib4bwc2m9g"
+            ],
+            "createdAt": "2025-10-01T17:19:31.616Z",
+            "messages": []
+          },
+          {
+            "id": "7cde57e4-77fb-4ccf-8c5f-a09530ae16f3",
+            "userId": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+            "question": "¿Cómo puedo sanar mi corazón?",
+            "type": 3,
+            "selectedIds": [
+              "cmg82oc8d0013edibdi1vkc48",
+              "cmg82obp8000vediblyaeeuvd",
+              "cmg82oats000iedibcc7na6dv"
+            ],
+            "createdAt": "2025-10-01T18:09:36.241Z",
+            "messages": []
+          },
+          {
+            "id": "9896a060-9fef-4c9c-ab77-49a7f16ba42d",
+            "userId": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+            "question": "¿Qué necesito saber sobre mi futuro amoroso?",
+            "type": 3,
+            "selectedIds": [
+              "cmg82oayj000kedibzgv9ytuj",
+              "cmg82oaf7000cedibvrrua003",
+              "cmg82oaow000gedibepncgmlu"
+            ],
+            "createdAt": "2025-10-01T19:45:13.739Z",
+            "messages": []
+          },
+          {
+            "id": "99be6206-053e-4746-8d0d-d2a41d3ee9b8",
+            "userId": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+            "question": "¿Cómo puedo sanar mi corazón?",
+            "type": 3,
+            "selectedIds": [
+              "cmg82ob39000medibra8j2rru",
+              "cmg82oa3e0007edib8mxua9x8",
+              "cmg82ob8d000oedib2v91izlm"
+            ],
+            "createdAt": "2025-10-01T20:18:09.610Z",
+            "messages": []
+          },
+          {
+            "id": "1aeab42c-8ae2-4e5d-a6ca-c223184f405b",
+            "userId": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+            "question": "¿Cómo puedo sanar mi corazón?",
+            "type": 3,
+            "selectedIds": [
+              "cmg82o9fr0001edib9cp3dyqt",
+              "cmg82ob5r000nedib4bwc2m9g",
+              "cmg82oami000fedibv4c7d9uo"
+            ],
+            "createdAt": "2025-10-01T20:39:03.041Z",
+            "messages": []
+          },
+          {
+            "id": "196fecab-da79-4535-8111-47ff279e2885",
+            "userId": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+            "question": "¿Qué necesito saber sobre mi futuro amoroso?",
+            "type": 3,
+            "selectedIds": [
+              "cmg82obaq000pedibzeewg5pn",
+              "cmg82oa3e0007edib8mxua9x8",
+              "cmg82o9tr0003edibgh9yt0x8"
+            ],
+            "createdAt": "2025-10-01T20:46:20.104Z",
+            "messages": []
+          }
+        ]
+      }
+    ],
+    "products": [],
+    "memberships": [],
+    "membershipPlans": [
+      {
+        "id": "efc66c0a-554e-4a0b-bf2b-f9a3b6ee72d3",
+        "name": "Plan Básico",
+        "description": "Acceso básico a funcionalidades premium",
+        "priceCents": 1999,
+        "currency": "USD",
+        "durationDays": 30,
+        "isActive": true,
+        "createdAt": "2025-10-01T15:09:57.699Z",
+        "updatedAt": "2025-10-01T15:09:57.699Z",
+        "userMemberships": []
+      },
+      {
+        "id": "6a2ad052-10a4-4b0b-a96d-7e89d60c4b4f",
+        "name": "Plan Premium",
+        "description": "Acceso completo a todas las funcionalidades",
+        "priceCents": 3999,
+        "currency": "USD",
+        "durationDays": 30,
+        "isActive": true,
+        "createdAt": "2025-10-01T15:09:57.880Z",
+        "updatedAt": "2025-10-01T15:09:57.880Z",
+        "userMemberships": []
+      }
+    ],
+    "videoConsultations": [
+      {
+        "id": "cmg7477h100014oahw29kxj9s",
+        "userId": "5eefd6b5-b3b7-4941-9a08-6228b5991b6d",
+        "consultorId": "ba71c2d1-bf6c-4658-be41-1e559e47eeb2",
+        "consultantId": null,
+        "scheduledAt": "2025-10-01T22:14:05.444Z",
+        "date": null,
+        "time": null,
+        "duration": 60,
+        "status": "NO_SHOW",
+        "meetingLink": "https://meet.jit.si/test-room-123",
+        "videoLink": null,
+        "price": 5000,
+        "paymentProvider": null,
+        "paymentStatus": "PENDING",
+        "notes": "Consulta de prueba para testing",
+        "rating": null,
+        "userJoinedAt": null,
+        "consultorJoinedAt": null,
+        "userLeftAt": null,
+        "consultorLeftAt": null,
+        "actualStartTime": null,
+        "actualEndTime": null,
+        "actualDuration": null,
+        "attendanceStatus": "BOTH_NO_SHOW",
+        "attendanceNotes": "Marcado como no-show automáticamente el 2/10/2025, 8:30:02 a. m.",
+        "remindersSent": 0,
+        "lastReminderSent": null,
+        "createdAt": "2025-09-30T22:14:05.458Z",
+        "updatedAt": "2025-10-02T13:30:02.984Z"
+      }
+    ],
+    "contactMessages": [],
+    "allReadings": [
+      {
+        "id": "48ac7aeb-8226-4883-afab-fc32720709d0",
+        "userId": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+        "question": "deseo guia sobre mi futuro contrato",
+        "type": 3,
+        "selectedIds": [
+          "cmg82obd8000qedib29jwfazw",
+          "cmg82oa840009edib4h4mvqqm",
+          "cmg82ockg0018edib8zmdo20v"
+        ],
+        "createdAt": "2025-10-01T15:34:32.396Z",
+        "messages": [],
+        "user": {
+          "id": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+          "fullName": "Usuario Tester",
+          "email": "tester@oraculo.com"
+        }
+      },
+      {
+        "id": "e534e35e-7501-4f0e-a249-1fd7b8216d29",
+        "userId": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+        "question": "¿Qué necesito saber sobre mi futuro amoroso?",
+        "type": 9,
+        "selectedIds": [
+          "cmg82o9rd0002edib6h4trkoe",
+          "cmg82oa840009edib4h4mvqqm",
+          "cmg82ocas0014edibd7u1vr8b",
+          "cmg82oci20017edibldj33v7i",
+          "cmg82oaf7000cedibvrrua003",
+          "cmg82obhz000sedib0rg2qi73",
+          "cmg82oar9000hedibi40t8g4x",
+          "cmg82o9fr0001edib9cp3dyqt",
+          "cmg82oaow000gedibepncgmlu"
+        ],
+        "createdAt": "2025-10-01T16:53:27.417Z",
+        "messages": [],
+        "user": {
+          "id": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+          "fullName": "Usuario Tester",
+          "email": "tester@oraculo.com"
+        }
+      },
+      {
+        "id": "d959c10b-4f03-41ec-a2bc-cbaccbe34354",
+        "userId": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+        "question": "¿Cuál es mi propósito de vida en este momento?",
+        "type": 9,
+        "selectedIds": [
+          "cmg82oats000iedibcc7na6dv",
+          "cmg82oc8d0013edibdi1vkc48",
+          "cmg82oa840009edib4h4mvqqm",
+          "cmg82o9fr0001edib9cp3dyqt",
+          "cmg82oak5000eedibz2i7fi52",
+          "cmg82oa3e0007edib8mxua9x8",
+          "cmg82obyp000zedibbjhm8lap",
+          "cmg82ocfp0016edib2g488mux",
+          "cmg82ob5r000nedib4bwc2m9g"
+        ],
+        "createdAt": "2025-10-01T17:19:31.616Z",
+        "messages": [],
+        "user": {
+          "id": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+          "fullName": "Usuario Tester",
+          "email": "tester@oraculo.com"
+        }
+      },
+      {
+        "id": "7cde57e4-77fb-4ccf-8c5f-a09530ae16f3",
+        "userId": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+        "question": "¿Cómo puedo sanar mi corazón?",
+        "type": 3,
+        "selectedIds": [
+          "cmg82oc8d0013edibdi1vkc48",
+          "cmg82obp8000vediblyaeeuvd",
+          "cmg82oats000iedibcc7na6dv"
+        ],
+        "createdAt": "2025-10-01T18:09:36.241Z",
+        "messages": [],
+        "user": {
+          "id": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+          "fullName": "Usuario Tester",
+          "email": "tester@oraculo.com"
+        }
+      },
+      {
+        "id": "9896a060-9fef-4c9c-ab77-49a7f16ba42d",
+        "userId": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+        "question": "¿Qué necesito saber sobre mi futuro amoroso?",
+        "type": 3,
+        "selectedIds": [
+          "cmg82oayj000kedibzgv9ytuj",
+          "cmg82oaf7000cedibvrrua003",
+          "cmg82oaow000gedibepncgmlu"
+        ],
+        "createdAt": "2025-10-01T19:45:13.739Z",
+        "messages": [],
+        "user": {
+          "id": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+          "fullName": "Usuario Tester",
+          "email": "tester@oraculo.com"
+        }
+      },
+      {
+        "id": "99be6206-053e-4746-8d0d-d2a41d3ee9b8",
+        "userId": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+        "question": "¿Cómo puedo sanar mi corazón?",
+        "type": 3,
+        "selectedIds": [
+          "cmg82ob39000medibra8j2rru",
+          "cmg82oa3e0007edib8mxua9x8",
+          "cmg82ob8d000oedib2v91izlm"
+        ],
+        "createdAt": "2025-10-01T20:18:09.610Z",
+        "messages": [],
+        "user": {
+          "id": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+          "fullName": "Usuario Tester",
+          "email": "tester@oraculo.com"
+        }
+      },
+      {
+        "id": "1aeab42c-8ae2-4e5d-a6ca-c223184f405b",
+        "userId": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+        "question": "¿Cómo puedo sanar mi corazón?",
+        "type": 3,
+        "selectedIds": [
+          "cmg82o9fr0001edib9cp3dyqt",
+          "cmg82ob5r000nedib4bwc2m9g",
+          "cmg82oami000fedibv4c7d9uo"
+        ],
+        "createdAt": "2025-10-01T20:39:03.041Z",
+        "messages": [],
+        "user": {
+          "id": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+          "fullName": "Usuario Tester",
+          "email": "tester@oraculo.com"
+        }
+      },
+      {
+        "id": "196fecab-da79-4535-8111-47ff279e2885",
+        "userId": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+        "question": "¿Qué necesito saber sobre mi futuro amoroso?",
+        "type": 3,
+        "selectedIds": [
+          "cmg82obaq000pedibzeewg5pn",
+          "cmg82oa3e0007edib8mxua9x8",
+          "cmg82o9tr0003edibgh9yt0x8"
+        ],
+        "createdAt": "2025-10-01T20:46:20.104Z",
+        "messages": [],
+        "user": {
+          "id": "e40c466f-190c-41d1-853f-59b0bd12f8a2",
+          "fullName": "Usuario Tester",
+          "email": "tester@oraculo.com"
+        }
+      }
+    ]
+  }
+}
