@@ -1,81 +1,48 @@
 import { MetadataRoute } from 'next'
-import { prisma } from '@/lib/prisma'
+
+export const dynamic = 'force-dynamic'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://oraculoarcangeles.com'
 
-  // Obtener posts publicados
-  const posts = await prisma.blog_posts.findMany({
-    where: { status: 'PUBLISHED' },
-    select: {
-      slug: true,
-      updatedAt: true,
-      publishedAt: true,
-    },
-    orderBy: { publishedAt: 'desc' }
-  })
+  let posts: { slug: string; updatedAt: Date; publishedAt: Date | null }[] = []
+  let categories: { slug: string; updatedAt: Date }[] = []
 
-  // Obtener categorías
-  const categories = await prisma.blog_categories.findMany({
-    select: {
-      slug: true,
-      updatedAt: true,
-    }
-  })
+  try {
+    const { prisma } = await import('@/lib/prisma')
+    posts = await prisma.blog_posts.findMany({
+      where: { status: 'PUBLISHED' },
+      select: { slug: true, updatedAt: true, publishedAt: true },
+      orderBy: { publishedAt: 'desc' }
+    })
+    categories = await prisma.blog_categories.findMany({
+      select: { slug: true, updatedAt: true }
+    })
+  } catch {
+    // DB not available at build time — return static pages only
+  }
 
-  // Páginas estáticas del sitio
   const staticPages = [
-    {
-      url: siteUrl,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 1,
-    },
-    {
-      url: `${siteUrl}/blog`,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 0.9,
-    },
-    {
-      url: `${siteUrl}/tienda`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/consultas`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/membresias`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    },
+    { url: siteUrl, lastModified: new Date(), changeFrequency: 'daily' as const, priority: 1 },
+    { url: `${siteUrl}/blog`, lastModified: new Date(), changeFrequency: 'daily' as const, priority: 0.9 },
+    { url: `${siteUrl}/tienda`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.8 },
+    { url: `${siteUrl}/consultas`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.8 },
+    { url: `${siteUrl}/membresias`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.8 },
   ]
 
-  // Posts del blog
-  const blogPostPages = posts.map((post: any) => ({
+  const blogPostPages = posts.map((post) => ({
     url: `${siteUrl}/blog/${post.slug}`,
     lastModified: post.updatedAt,
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
 
-  // Categorías del blog
-  const categoryPages = categories.map((category: any) => ({
+  const categoryPages = categories.map((category) => ({
     url: `${siteUrl}/blog/categoria/${category.slug}`,
     lastModified: category.updatedAt,
     changeFrequency: 'weekly' as const,
     priority: 0.6,
   }))
 
-  return [
-    ...staticPages,
-    ...blogPostPages,
-    ...categoryPages,
-  ]
+  return [...staticPages, ...blogPostPages, ...categoryPages]
 }
