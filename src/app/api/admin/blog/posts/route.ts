@@ -64,7 +64,7 @@ export async function GET(request: NextRequest) {
           },
           _count: {
             select: {
-              comments: true
+              blog_comments: true
             }
           }
         },
@@ -184,7 +184,7 @@ export async function POST(request: NextRequest) {
         },
         _count: {
           select: {
-            comments: true
+            blog_comments: true
           }
         }
       }

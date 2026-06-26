@@ -178,7 +178,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
         },
         _count: {
           select: {
-            comments: true
+            blog_comments: true
           }
         }
       }
