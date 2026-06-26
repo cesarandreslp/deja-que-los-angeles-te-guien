@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
 import BlogPostClient from './BlogPostClient'
 
+export const dynamic = 'force-dynamic'
+
 interface Props {
   params: {
     slug: string
@@ -90,18 +92,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-// Generar rutas estáticas en build time
-export async function generateStaticParams() {
-  const posts = await prisma.blog_posts.findMany({
-    where: { status: 'PUBLISHED' },
-    select: { slug: true },
-    take: 100, // Limitar a los 100 posts más recientes
-  })
-
-  return posts.map((post) => ({
-    slug: post.slug,
-  }))
-}
 
 export default async function BlogPostPage({ params }: Props) {
   const post = await prisma.blog_posts.findUnique({
