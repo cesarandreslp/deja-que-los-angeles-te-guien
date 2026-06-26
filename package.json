@@ -15,7 +15,7 @@
     "devtools:setup": "node scripts/setup-devtools.js",
     "devtools:launch": "node scripts/setup-devtools.js --launch",
     "dev:with-devtools": "concurrently \"npm run dev\" \"npm run devtools\"",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "db:generate": "prisma generate",
