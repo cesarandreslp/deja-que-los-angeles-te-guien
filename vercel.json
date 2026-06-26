@@ -1,4 +1,8 @@
 {
-  "buildCommand": "NODE_OPTIONS='--stack-size=65536' npm run build",
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "build": {
+    "env": {
+      "NODE_OPTIONS": "--stack-size=8192"
+    }
+  }
 }
