@@ -42,7 +42,7 @@ interface BlogCategory {
   description?: string
   posts: BlogPost[]
   _count: {
-    posts: number
+    blog_posts: number
   }
 }
 

@@ -51,7 +51,7 @@ interface BlogCategory {
   slug: string
   description?: string
   _count: {
-    posts: number
+    blog_posts: number
   }
 }
 
